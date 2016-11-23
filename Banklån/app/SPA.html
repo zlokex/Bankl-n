@@ -1,0 +1,129 @@
+﻿
+<!-- Initial Page -->
+<div *ngIf="showInitial">
+    <div class="hero">
+        <div class="container">
+            <h1>Forbrukslån - Søk nå</h1>
+            <ul>
+                <li>Oppfyll drømmene dine!</li>
+                <li>Lån inntil kr. 500.000,-</li>
+                <li>Kun 7% rente!</li>
+                <li>Rask behandling av lånesøknaden</li>
+                <li>Pengene inn på konto innen kort tid</li>
+                <li>Helt uforpliktende søknad</li>
+            </ul>
+        </div>
+    </div>
+    <div class="center">
+        <button class="btn btn-custom" type="button" style='display: inline-block; vertical-align: top;'>
+            Mer informasjon
+        </button>
+        <button class="btn btn-custom" (click)='applyNowBtn()' type="button" style='display: inline-block; vertical-align: top;'>
+            Søk nå
+        </button>
+    </div>
+    </div>
+
+<!-- Lånesøknad -->
+<div class="panel panel-default panel-transparent gandalf" *ngIf="showForm">
+    <div class="panel-heading">
+        <h3>Lånesøknad</h3>
+    </div>
+
+    <div class="panel-body">
+        <div class="col-sm-10">
+            <form [formGroup]="form" class="form-std" (ngSubmit)="onSubmit()">
+                <input class="form-control" formControlName="id" type="hidden" />
+                <div class="form-group">
+                    <div class="grid-3">
+                        <label>Lånebeløp</label>
+                    </div>
+                    <div class="grid-9">
+                        <input class="form-control" formControlName="borrowingLimit" />
+                        <p class="alert alert-warning" [hidden]="form.controls.borrowingLimit.valid || (form.controls.borrowingLimit.pristine && !submitted)">
+                            Lånebeløp er obligatorisk.
+                        </p>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="grid-3">
+                        <label>Nedbetalingstid</label>
+                    </div>
+                    <div class="grid-9">
+                        <ng2-slider min="6"
+                                    max="23"
+                                    startValue="9"
+                                    endValue="21"
+                                    stepValue="2"
+                                    [normalHandlerStyle]="{ 'background-color': 'green'}"
+                                    [slidingHandlerStyle]="{
+                                      'border-radius': '9px',
+                                      'background-color': 'red'
+                                }">
+                        </ng2-slider>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="grid-3">
+                        <label>Fødselsnummer</label>
+                    </div>
+                    <div class="grid-9">
+                        <div class="icon-input">
+                            <i class="glyphicon glyphicon-user"></i>
+                            <input type="text" class="form-control" formControlName="birthNo" />
+                        </div>
+                        <p class="alert alert-warning" [hidden]="form.controls.birthNo.valid || (form.controls.birthNo.pristine && !submitted)">
+                            Fødselsnummer er obligatorisk.
+                        </p>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="grid-3">
+                        <label>Mobil</label>
+                    </div>
+                    <div class="grid-9">
+                        <div class="icon-input">
+                            <i class="glyphicon glyphicon-phone"></i>
+                            <input type="tel" class="form-control" formControlName="mobileNo" />
+                        </div>
+                        <p class="alert alert-warning" [hidden]="form.controls.mobileNo.valid || (form.controls.mobileNo.pristine && !submitted)">
+                            Mobilnummer er obligatorisk (8 siffer)
+                        </p>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="grid-3">
+                        <label>E-post</label>
+                    </div>
+                    <div class="grid-9">
+                        <div class="icon-input">
+                            <i class="glyphicon glyphicon-envelope"></i>
+                            <input type="email" class="form-control" formControlName="email" />
+                        </div>
+                        <p class="alert alert-warning" [hidden]="form.controls.email.valid || (form.controls.email.pristine && !submitted)">
+                            E-post er obligatorisk.
+                        </p>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <button type="submit" *ngIf="formStatus=='Add'" [disabled]="!form.valid" class="btn btn-primary">Send søknad</button>
+                    <button class="btn btn-default" (click)="tilbakeTilListe()">Tilbake</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+
+<!-- Informasjon -->
+<div class="panel panel-default panel-transparent gandalf" *ngIf="showInfo">
+    <div class="panel-heading">
+        <h3>Informasjon</h3>
+    </div>
+
+    <div class="panel-body">
+        <div class="col-sm-10">
+            
+        </div>
+    </div>
+</div>

@@ -1,0 +1,267 @@
+﻿html { 
+  background: url(Images/backpacker-travel.png) no-repeat center center fixed; 
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+
+}
+
+body { background: none !important; }
+
+.navbar {
+    font-weight: 600;
+    opacity: 0.5;
+    filter: alpha(opacity=80); /* For IE8 and earlier */
+}
+
+.navbar-brand {
+    margin: 0;
+    padding: 0;
+    padding-left:1em;
+
+}
+
+.navbar-brand img {
+    width:2.6em;
+    height:2.3em;
+    margin-top: 0.2em;
+    /*margin-top:-0.5em;*/
+}
+
+.main-logo img {
+    width:3.9em;
+    height:3.45em;
+    /*margin-top: 0.2em;*/
+    /*margin-top:-0.5em;*/
+}
+
+header.site-header {
+    /*background: rgba(255,255,255,0.6);*/
+    opacity: 0.5;
+    background-color: white;
+    color: black;
+    padding: 10px 0;
+    border-bottom: 1px solid #efefef;
+}
+
+header.site-header .main-logo {
+    text-align: center;
+}
+
+header.site-header .main-logo {
+    padding: 5px 0;
+}
+
+header.site-header.header-fade span {
+    color: #828282;
+    font-weight: 300;
+}
+
+header.site-header .main-logo span {
+    display: inline-block;
+    font-size: 23px;
+    margin-left: 20px;
+    padding-left: 22px;
+    border-left: 1px solid #828282;
+    vertical-align: middle;
+    /*font-weight: 600;*/
+}
+
+.container {
+    max-width: 1000px!important;
+}
+
+.hero {
+    text-align: left;
+    background-color: #1b3968;
+    opacity: 0.9;
+    /*margin-top: 6em;*/ /* set when navbar-fixed-top*/
+    margin-top: 4em;
+    margin-left: auto;
+    margin-right: auto;
+    margin-bottom: 1.5em;
+    padding-top: 1em;
+    padding-bottom: 1em;
+    border-radius: 10px;
+    
+}
+
+.hero h1 {
+    margin: 0;
+    margin-bottom: 10px;
+    font-weight: 700;
+    font-size: 50px;
+    display: inline-block;
+    color: #fff;
+}
+
+.hero ul li {
+    font-size: 20px;
+    font-family: "dinmittelschriftstd-webfont",Trebuchet Ms,Verdana,sans-serif;
+    padding: 0;
+    margin: 0;
+    list-style: none;
+    color: #fff;
+    line-height: 1.6;
+}
+
+.hero ul li:before {
+    content: "»";
+    /*color: #a5ce39;*/
+    color: #FF2A00;
+    display: inline-block;
+    font-family: "Glyphicons Halflings";
+    font-size: 12px;
+    font-weight: 700;
+    margin-left: -20px;
+    margin-top: -1px;
+    position: absolute;
+    transform: scale(3,2);
+    -webkit-transform: scale(3,2);
+    -moz-transform: scale(3,2);
+    -ms-transform: scale(3,2);
+    -o-transform: scale(3,2);
+}
+
+.btn-custom {
+  font-weight: 600 !important;
+  -webkit-border-radius: 20px !important;
+  -moz-border-radius: 20px !important;
+  border-radius: 20px !important;
+  font-family: Arial;
+  color: #ffffff;
+  font-size: 20px;
+  background: #FF552A;
+  text-decoration: none;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  padding-left: 15px;
+  padding-right: 15px;
+  margin-bottom: 1em;
+  margin-left: 0.5em;
+  margin-right: 0.5em;
+}
+
+.btn-custom:hover {
+  background: #FF2A00;
+  text-decoration: none;
+  color: #ffffff!important;
+}
+
+.center {
+    text-align:center;
+}
+
+.gandalf {
+    margin-top: 4em;
+}
+
+.panel-transparent {
+    background: none!important;
+}
+
+.panel-transparent .panel-body {
+    background: white;
+}
+
+.panel-transparent .panel-footer {
+    background: white;
+}
+
+.gandalf .panel-heading {
+    font-weight: 800!important;
+    text-align: center;
+    background: rgba(255,255,255,0.6)!important;
+}
+
+.grid-3 {
+    width: 24%;
+    clear: right;
+    float: left;
+    margin-left: 0;
+    margin-right: 2%;
+    text-align:right;
+    margin-bottom:1em;
+}
+
+.grid-9 {
+    width: 74%;
+    clear: right;
+    float: left;
+    margin-left: 0;
+    margin-right: 0;
+    margin-bottom:1em;
+}
+
+.icon-input {
+    height: 35px;
+    border: 1px solid #d3d3d3;
+}
+
+.icon-input input {
+    float: right !important;
+    width: 87% !important;
+    height: 100% !important;
+    border: none !important;
+    border-left: 1px solid #d3d3d3;
+    /*border: 1px solid #d3d3d3!important;*/
+}
+
+.icon-input i, .icon-input span {
+    display: block;
+    float: left;
+    width: 13%;
+    height: 100%;
+    border-right: 1px solid #d3d3d3;
+    text-align: center;
+}
+
+.icon-input i {
+    padding: 4px 0;
+    font-size: 22px;
+    color: #005c9f;
+    
+}
+
+
+
+
+
+
+
+
+.icon-input:before, .icon-input:before {
+    font-family: "webfinance" !important;
+    font-style: normal !important;
+    font-weight: normal !important;
+    font-variant: normal !important;
+    text-transform: none !important;
+    speak: none;
+    line-height: 1;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+.icon-input.standalone {
+    height: 43px;
+}
+
+.icon-phone:before {
+    content: "\65";
+}
+
+.form-std input[type="text"], .form-std input[type="email"], .form-std input[type="url"], .form-std input[type="search"], .form-std input[type="tel"], .form-std input[type="number"], .form-std select, .form-std textarea {
+    display: block;
+    width: 100%;
+    height: 35px;
+    padding-left: 10px;
+    padding-right: 10px;
+    margin-bottom: 10px;
+    font-family: "Open Sans",Arial,sans-serif;
+    font-size: inherit;
+    background: white;
+    border: 1px solid #d3d3d3;
+    border-radius: 3px;
+}
+    /**/

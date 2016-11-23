@@ -1,0 +1,40 @@
+﻿<html>
+<head>
+    <title>Hardbank - Forbrukslån</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="/Content/font-awesome.min.css" rel="stylesheet" type="text/css" />
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="styles.css">
+
+    <!-- 1. Load libraries -->
+    <!-- Polyfill for older browsers -->
+    <script src="node_modules/core-js/client/shim.min.js"></script>
+    <script src="node_modules/zone.js/dist/zone.js"></script>
+    <script src="node_modules/reflect-metadata/Reflect.js"></script>
+    <script src="node_modules/systemjs/dist/system.src.js"></script>
+    <!-- 2. Configure SystemJS -->
+    <script src="systemjs.config.js"></script>
+    <script>
+      System.defaultJSExtensions = true;
+      System.import('app').catch(function(err){ console.error(err); });
+    </script>
+</head>
+
+
+<body>
+    <header class="site-header header-fade">
+        <div class="main-logo">
+            <a href="/">
+                <img src="Images/logo.png" />
+            </a>
+            <span>Forbrukslån - Til hva du vil</span>
+        </div>
+    </header>
+
+    <!-- 3. Display the application -->
+    <div class="container">
+        <my-app>Loading...</my-app>
+    </div>
+</body>
+</html>
