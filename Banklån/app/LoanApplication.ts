@@ -1,8 +1,8 @@
 ﻿export class LoanApplication {
-    id: number;
-    repaymentPeriod: number;
-    borrowingLimit: number;
-    birthNo: string;
-    mobileNo: string;
-    email: string;
+    Id: number;
+    RepaymentPeriod: number;
+    BorrowingLimit: number;
+    BirthNo: string;
+    MobileNo: string;
+    Email: string;
 }

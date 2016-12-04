@@ -147,6 +147,7 @@
     <Content Include="Images\Backpacker-Travel.jpg" />
     <Content Include="Images\backpacker-travel.png" />
     <Content Include="Images\logo.png" />
+    <Content Include="Images\spin.svg" />
     <Content Include="Index.html" />
     <Content Include="fonts\glyphicons-halflings-regular.woff2" />
     <Content Include="fonts\glyphicons-halflings-regular.woff" />
@@ -202,10 +203,9 @@
     <Folder Include="App_Data\" />
   </ItemGroup>
   <ItemGroup>
-    <TypeScriptCompile Include="app\app.component.ts" />
     <TypeScriptCompile Include="app\app.module.ts" />
     <TypeScriptCompile Include="app\LoanApplication.ts" />
-    <TypeScriptCompile Include="app\spa.ts" />
+    <TypeScriptCompile Include="app\app.component.spa.ts" />
     <TypeScriptCompile Include="app\main.ts" />
   </ItemGroup>
   <ItemGroup>

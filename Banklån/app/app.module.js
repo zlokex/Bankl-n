@@ -11,16 +11,30 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 var core_1 = require('@angular/core');
 var platform_browser_1 = require('@angular/platform-browser');
 var forms_1 = require('@angular/forms');
+var angular2_modal_1 = require('angular2-modal');
+var bootstrap_1 = require('angular2-modal/plugins/bootstrap');
+var ng2_modal_1 = require("ng2-modal");
 var http_1 = require('@angular/http');
-var spa_1 = require('./spa');
+var app_component_spa_1 = require('./app.component.spa');
+var primeng_1 = require('primeng/primeng');
 var AppModule = (function () {
     function AppModule() {
     }
     AppModule = __decorate([
         core_1.NgModule({
-            imports: [platform_browser_1.BrowserModule, forms_1.ReactiveFormsModule, http_1.HttpModule, http_1.JsonpModule],
-            declarations: [spa_1.SPA],
-            bootstrap: [spa_1.SPA]
+            imports: [
+                platform_browser_1.BrowserModule,
+                primeng_1.SliderModule,
+                forms_1.FormsModule,
+                forms_1.ReactiveFormsModule,
+                http_1.HttpModule,
+                http_1.JsonpModule,
+                angular2_modal_1.ModalModule.forRoot(),
+                bootstrap_1.BootstrapModalModule,
+                ng2_modal_1.ModalModule
+            ],
+            declarations: [app_component_spa_1.SPA],
+            bootstrap: [app_component_spa_1.SPA]
         }), 
         __metadata('design:paramtypes', [])
     ], AppModule);

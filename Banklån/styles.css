@@ -9,10 +9,12 @@
 
 body { background: none !important; }
 
+/* TOP NAVBAR (NOT IN USE) */
+
 .navbar {
     font-weight: 600;
     opacity: 0.5;
-    filter: alpha(opacity=80); /* For IE8 and earlier */
+    filter: alpha(opacity=80); 
 }
 
 .navbar-brand {
@@ -35,6 +37,8 @@ body { background: none !important; }
     /*margin-top: 0.2em;*/
     /*margin-top:-0.5em;*/
 }
+
+/* TOP HEADER */
 
 header.site-header {
     /*background: rgba(255,255,255,0.6);*/
@@ -68,9 +72,13 @@ header.site-header .main-logo span {
     /*font-weight: 600;*/
 }
 
+/* MAIN CONTAINER */
+
 .container {
     max-width: 1000px!important;
 }
+
+/* INITIAL PAGE */
 
 .hero {
     text-align: left;
@@ -124,6 +132,8 @@ header.site-header .main-logo span {
     -o-transform: scale(3,2);
 }
 
+
+/* BUTTONS */
 .btn-custom {
   font-weight: 600 !important;
   -webkit-border-radius: 20px !important;
@@ -149,31 +159,42 @@ header.site-header .main-logo span {
   color: #ffffff!important;
 }
 
+.btn-custom2 {
+  font-weight: 600 !important;
+  -webkit-border-radius: 20px !important;
+  -moz-border-radius: 20px !important;
+  border-radius: 20px !important;
+  font-family: Arial;
+  color: #ffffff;
+  font-size: 20px;
+  background: #005c9f;
+  text-decoration: none;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  padding-left: 15px;
+  padding-right: 15px;
+  
+  margin-left: 0.5em;
+  margin-right: 0.5em;
+}
+
+.btn-custom2:hover {
+  background: #1b3968;
+  text-decoration: none;
+  color: #ffffff!important;
+}
+
+/* POSITIONAL */
+
 .center {
     text-align:center;
 }
 
-.gandalf {
-    margin-top: 4em;
+.centered-label {
+    padding-top: 0.5em!important;
 }
 
-.panel-transparent {
-    background: none!important;
-}
-
-.panel-transparent .panel-body {
-    background: white;
-}
-
-.panel-transparent .panel-footer {
-    background: white;
-}
-
-.gandalf .panel-heading {
-    font-weight: 800!important;
-    text-align: center;
-    background: rgba(255,255,255,0.6)!important;
-}
+/* ARRANGEMENT */
 
 .grid-3 {
     width: 24%;
@@ -193,6 +214,48 @@ header.site-header .main-logo span {
     margin-right: 0;
     margin-bottom:1em;
 }
+
+
+/* PANEL */
+
+.gandalf {
+    margin-top: 4em;
+}
+
+.panel-transparent {
+    background: none!important;
+}
+
+.panel {
+    border: none!important;
+}
+
+
+.panel-transparent .panel-body {
+    background: white;
+}
+
+.panel-transparent .panel-footer {
+    background: white;
+}
+
+.gandalf .panel-heading {
+    font-weight: 800!important;
+    color: white;
+    text-align: center;
+    background: rgba(27,57,104,0.9)!important;
+    
+}
+
+.gandalf .panel-heading h2 {
+    margin-bottom: 10px;
+    font-weight: 700;
+    font-size: 30px;
+    display: inline-block;
+    color: #fff;
+}
+
+
 
 .icon-input {
     height: 35px;
@@ -221,47 +284,222 @@ header.site-header .main-logo span {
     padding: 4px 0;
     font-size: 22px;
     color: #005c9f;
-    
+}
+
+/* SLIDER */
+
+.slide-slider {
+    width: 79% !important;
+    clear: right;
+    float: left;
+    margin-top:10px;
+}
+
+.slide-value {
+    width: 20% !important;
+    margin-left: 1%;
+    clear: right;
+    float: left;
+}
+
+/*
+.slide-label {
+    width: 8% !important;
+    margin-left: 1%;
+    clear: right;
+    float: left;
+    margin-top:7px;
+}
+*/
+
+/* INPUT */
+
+.input-addon {
+    position: relative;
+    left: -55px;
+    margin-top: 6px;
+    color: #8dc63f;
+    font-size: 16px;
+    font-weight: bold;
+    width: 0;
+    display: inline-block;
+    cursor: default;
+}
+
+.input-value {
+    padding-right: 30px;
+    text-align:right!important;
 }
 
 
-
-
-
-
-
-
-.icon-input:before, .icon-input:before {
-    font-family: "webfinance" !important;
-    font-style: normal !important;
-    font-weight: normal !important;
-    font-variant: normal !important;
-    text-transform: none !important;
-    speak: none;
-    line-height: 1;
-    -webkit-font-smoothing: antialiased;
-    -moz-osx-font-smoothing: grayscale;
+.loansliders h3 {
+    padding-top: 0.5em;
+    padding-bottom: 0.5em;
 }
 
-.icon-input.standalone {
-    height: 43px;
+.batman {
+   /* border-top: 1px solid #d3d3d3!important;
+    border-bottom: 1px solid #d3d3d3!important;
+    margin-bottom: 0.5em;
+    padding-top: 1em;
+    padding-bottom: 2em!important;*/
+
+   padding-bottom: 1.5em;
 }
 
-.icon-phone:before {
-    content: "\65";
+.batman h3{
+    text-align: center;
 }
 
-.form-std input[type="text"], .form-std input[type="email"], .form-std input[type="url"], .form-std input[type="search"], .form-std input[type="tel"], .form-std input[type="number"], .form-std select, .form-std textarea {
-    display: block;
-    width: 100%;
-    height: 35px;
-    padding-left: 10px;
-    padding-right: 10px;
-    margin-bottom: 10px;
-    font-family: "Open Sans",Arial,sans-serif;
-    font-size: inherit;
-    background: white;
-    border: 1px solid #d3d3d3;
-    border-radius: 3px;
+.batman p{
+    text-align: center;
 }
-    /**/
+
+.batman .row{
+    text-align: center;
+}
+
+.loanValues {
+    color: #8dc63f;
+    display: inline-block;
+    font-size: 16px;
+    font-weight: bold;
+}
+
+.interest {
+    color: #005c9f;
+    display: inline-block;
+    font-size: 16px;
+    font-weight: bold;
+}
+
+.monthlyPayment {
+    color: #FF552A;
+    display: inline-block;
+    font-size: 16px;
+    font-weight: bold;
+}
+
+.title h3{
+    margin-top: 0px !important;
+    margin-bottom: 1em;
+}
+
+.title2 h3{
+    margin-bottom: 1em;
+}
+
+/* LOADING */
+
+.loading{
+    margin-top:3em;
+    width: 50px;
+    margin-left: auto;
+    margin-right: auto;
+    text-align: center!important;
+}
+
+
+/* PROGRESS BAR */
+
+.progress-area {
+    margin-bottom: 2em;
+    padding-bottom: 1em;
+    border-bottom: 2px solid #828282;
+}
+
+.progresscontainer {
+    width: 600px;
+    margin-left: auto; 
+    margin-right: auto;
+}
+
+.progressbar {
+  margin: 0;
+  padding: 0;
+  counter-reset: step;
+}
+.progressbar li {
+  list-style-type: none;
+  width: 25%;
+  float: left;
+  font-size: 12px;
+  position: relative;
+  text-align: center;
+  text-transform: uppercase;
+  color: #7d7d7d;
+}
+.progressbar li:before {
+  width: 30px;
+  height: 30px;
+  content: counter(step);
+  counter-increment: step;
+  line-height: 30px;
+  border: 2px solid #7d7d7d;
+  display: block;
+  text-align: center;
+  margin: 0 auto 10px auto;
+  border-radius: 50%;
+  background-color: white;
+}
+.progressbar li:after {
+  width: 120px;
+  height: 2px;
+  content: '';
+  margin-left: 15px;
+  margin-right: 0px;
+  position: absolute;
+  background-color: #7d7d7d;
+  top: 15px;
+  left: -50%;
+}
+.progressbar li:first-child:after {
+  content: none;
+}
+.progressbar li.active {
+  color: green;
+}
+
+.progressbar li.active:before {
+  color: white;
+  font-weight: bold;
+  font-size: 15px;
+  background-color: #8dc63f;
+}
+
+.progressbar li.active:before {
+  border-color: #55b776;
+}
+.progressbar li.active:after {
+  background-color: #55b776;
+}
+
+.progressbar li.completed:before {
+  content: url(Images/icon-check-white.png);
+  padding-top: 4px;
+  background-color: green;
+}
+
+.progressbar li.completed:after {
+  background-color: #55b776;
+}
+
+.step-form-buttons {
+    padding-top: 1em;
+}
+
+.step-form-buttons2 {
+    padding-top: 2em;
+}
+
+.terms {
+    margin-top:1em;
+}
+
+.terms span {
+    cursor: pointer;
+}
+
+.terms modal {
+    text-align: left;
+}

@@ -15,115 +15,346 @@
         </div>
     </div>
     <div class="center">
-        <button class="btn btn-custom" type="button" style='display: inline-block; vertical-align: top;'>
+        <button class="btn btn-custom" (click)='information()' type="button" style='display: inline-block; vertical-align: top;'>
             Mer informasjon
         </button>
         <button class="btn btn-custom" (click)='applyNowBtn()' type="button" style='display: inline-block; vertical-align: top;'>
             Søk nå
         </button>
+        <button class="btn btn-custom2" (click)='loanApplicationsList()' type="button" style='display: inline-block; vertical-align: top;'>
+            Se søknader
+        </button>
     </div>
-    </div>
+</div>
+
+
 
 <!-- Lånesøknad -->
-<div class="panel panel-default panel-transparent gandalf" *ngIf="showForm">
-    <div class="panel-heading">
-        <h3>Lånesøknad</h3>
-    </div>
+<div *ngIf="showForm">
+    <div class="panel panel-default panel-transparent gandalf">
+        <div class="panel-heading">
+            <h2>Lånesøknad</h2>
+        </div>
 
-    <div class="panel-body">
-        <div class="col-sm-10">
+        <div class="panel-body">
+
+            <!-- STEP PROGRESS BAR -->
+            <div class="col-sm-12 progress-area">
+                <div class="progresscontainer">
+                    <ul class="progressbar">
+                        <li [class.active]="is1Active" [class.completed]="is1Completed">Lånet</li>
+                        <li [class.active]="is2Active" [class.completed]="is2Completed">Personalia</li>
+                        <li [class.active]="is3Active" [class.completed]="is3Completed">Bekreft og send</li>
+                        <li [class.active]="is4Active" [class.completed]="is4Completed">Ferdig</li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- FORM BEGIN -->
             <form [formGroup]="form" class="form-std" (ngSubmit)="onSubmit()">
                 <input class="form-control" formControlName="id" type="hidden" />
-                <div class="form-group">
-                    <div class="grid-3">
-                        <label>Lånebeløp</label>
+
+                <!-- LÅNET BEGIN -->
+                <div *ngIf="stepFormLoan">
+                    <div class="col-sm-12 center title loansliders">
+                        <h3>Velg lånebeløp og nedbetalingstid</h3>
                     </div>
-                    <div class="grid-9">
-                        <input class="form-control" formControlName="borrowingLimit" />
-                        <p class="alert alert-warning" [hidden]="form.controls.borrowingLimit.valid || (form.controls.borrowingLimit.pristine && !submitted)">
-                            Lånebeløp er obligatorisk.
-                        </p>
-                    </div>
-                </div>
-                <div class="form-group">
-                    <div class="grid-3">
-                        <label>Nedbetalingstid</label>
-                    </div>
-                    <div class="grid-9">
-                        <ng2-slider min="6"
-                                    max="23"
-                                    startValue="9"
-                                    endValue="21"
-                                    stepValue="2"
-                                    [normalHandlerStyle]="{ 'background-color': 'green'}"
-                                    [slidingHandlerStyle]="{
-                                      'border-radius': '9px',
-                                      'background-color': 'red'
-                                }">
-                        </ng2-slider>
-                    </div>
-                </div>
-                <div class="form-group">
-                    <div class="grid-3">
-                        <label>Fødselsnummer</label>
-                    </div>
-                    <div class="grid-9">
-                        <div class="icon-input">
-                            <i class="glyphicon glyphicon-user"></i>
-                            <input type="text" class="form-control" formControlName="birthNo" />
+                    <div class="form-group">
+                        <div class="col-sm-10">
+                            <div class="grid-3">
+                                <label class="centered-label">Lånebeløp</label>
+                            </div>
+                            <div class="grid-9">
+                                <div class="slide-slider">
+                                    <p-slider [(ngModel)]="valAmount" formControlName="borrowingLimit" [min]="5000" [max]="500000" [step]="5000" (onChange)="calculateMonthlyPayment()"></p-slider>
+                                </div>
+                                <div class="slide-value">
+                                    <input class="form-control input-value" [(ngModel)]="valAmount" formControlName="borrowingLimit" />
+                                </div>
+                            </div>
                         </div>
-                        <p class="alert alert-warning" [hidden]="form.controls.birthNo.valid || (form.controls.birthNo.pristine && !submitted)">
-                            Fødselsnummer er obligatorisk.
-                        </p>
-                    </div>
-                </div>
-                <div class="form-group">
-                    <div class="grid-3">
-                        <label>Mobil</label>
-                    </div>
-                    <div class="grid-9">
-                        <div class="icon-input">
-                            <i class="glyphicon glyphicon-phone"></i>
-                            <input type="tel" class="form-control" formControlName="mobileNo" />
+                        <div class="col-sm-1">
+                            <label class="input-addon">kr</label>
                         </div>
-                        <p class="alert alert-warning" [hidden]="form.controls.mobileNo.valid || (form.controls.mobileNo.pristine && !submitted)">
-                            Mobilnummer er obligatorisk (8 siffer)
-                        </p>
-                    </div>
-                </div>
-                <div class="form-group">
-                    <div class="grid-3">
-                        <label>E-post</label>
-                    </div>
-                    <div class="grid-9">
-                        <div class="icon-input">
-                            <i class="glyphicon glyphicon-envelope"></i>
-                            <input type="email" class="form-control" formControlName="email" />
+                        <div class="col-sm-10">
+                            <div class="grid-3">
+                            </div>
+                            <div class="grid-9">
+                                <p class="alert alert-warning" [hidden]="form.controls.borrowingLimit.valid || (form.controls.borrowingLimit.pristine && !submitted)">
+                                    Ugyldig lånebeløp (Må være mellom kroner 5000 og kroner 500 000)
+                                </p>
+                            </div>
                         </div>
-                        <p class="alert alert-warning" [hidden]="form.controls.email.valid || (form.controls.email.pristine && !submitted)">
-                            E-post er obligatorisk.
-                        </p>
+                    </div>
+
+                    <div class="form-group">
+                        <div class="col-sm-10">
+                            <div class="grid-3">
+                                <label class="centered-label">Nedbetalingstid</label>
+                            </div>
+                            <div class="grid-9">
+                                <div class="slide-slider">
+                                    <p-slider [(ngModel)]="valYears" formControlName="repaymentPeriod" [min]="1" [max]="12" (onChange)="calculateMonthlyPayment()"></p-slider>
+                                </div>
+                                <div class="slide-value">
+                                    <input class="form-control input-value" [(ngModel)]="valYears" formControlName="repaymentPeriod" />
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-sm-1">
+                            <label class="input-addon">år</label>
+                        </div>
+                        <div class="col-sm-10">
+                            <div class="grid-3">
+                            </div>
+                            <div class="grid-9">
+                                <p class="alert alert-warning" [hidden]="form.controls.repaymentPeriod.valid || (form.controls.repaymentPeriod.pristine && !submitted)">
+                                    Ugyldig nedbetalingstid (Må være mellom 1 og 12 år)
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- LÅNEKALUKLUATOR -->
+                    <div class="col-sm-12 batman">
+                        <h3><i class="fa fa-calculator"></i> <label>Lånekalkulator</label></h3>
+                        <div class="col-sm-12 center">Lånebeløp: <div class="loanValues">{{valAmount}} kroner</div></div>
+                        <div class="col-sm-12 center">Nedbetalingstid: <div class="loanValues">{{valYears}} år</div></div>
+                        <div class="col-sm-12 center">Rente: <div class="interest">7%</div></div>
+                        <div class="col-sm-12 center">Månedlig kostnad: <div class="monthlyPayment">{{monthlyPayment}} kroner</div></div>
+                    </div>
+
+                    <!-- STEP FORM BUTTONS -->
+                    <div class="col-sm-12 step-form-buttons">
+                        <div class="form-group">
+                            <div class="center">
+                                <button [disabled]=true class="btn btn-custom2">Forrige</button>
+                                <button [disabled]="!form.controls.borrowingLimit.valid || !form.controls.repaymentPeriod.valid" (click)="loadStepForm2()" class="btn btn-custom2">Neste</button>
+                            </div>
+                        </div>
                     </div>
                 </div>
-                <div class="form-group">
-                    <button type="submit" *ngIf="formStatus=='Add'" [disabled]="!form.valid" class="btn btn-primary">Send søknad</button>
-                    <button class="btn btn-default" (click)="tilbakeTilListe()">Tilbake</button>
+                <!-- LÅNET END -->
+
+                <!-- PERSONALIA BEGIN -->
+                <div *ngIf="stepFormPersonalInfo">
+                    <div class="col-sm-12 center title2">
+                        <h3>Personlig informasjon</h3>
+                    </div>
+                    <div class="col-sm-10">
+                        <div class="form-group">
+                            <div class="grid-3">
+                                <label class="centered-label">Fødselsnummer</label>
+                            </div>
+                            <div class="grid-9">
+                                <div class="icon-input">
+                                    <i class="glyphicon glyphicon-user"></i>
+                                    <input type="text" maxlength="11" class="form-control" [(ngModel)]="valBirthNo" required formControlName="birthNo" />
+                                </div>
+                                <p class="alert alert-warning" [hidden]="form.controls.birthNo.valid || (form.controls.birthNo.pristine && !submitted)">
+                                    Gyldig fødselsnummer er obligatorisk (11 siffer).
+                                </p>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="grid-3">
+                                <label class="centered-label">Mobil</label>
+                            </div>
+                            <div class="grid-9">
+                                <div class="icon-input">
+                                    <i class="glyphicon glyphicon-phone"></i>
+                                    <input type="tel" maxlength="8" class="form-control" [(ngModel)]="valMobileNo" required formControlName="mobileNo" />
+                                </div>
+                                <p class="alert alert-warning" [hidden]="form.controls.mobileNo.valid || (form.controls.mobileNo.pristine && !submitted)">
+                                    Gyldig mobilnummer er obligatorisk (8 siffer)
+                                </p>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="grid-3">
+                                <label class="centered-label">E-post</label>
+                            </div>
+                            <div class="grid-9">
+                                <div class="icon-input">
+                                    <i class="glyphicon glyphicon-envelope"></i>
+                                    <input type="email" class="form-control" [(ngModel)]="valEmail" required formControlName="email" />
+                                </div>
+                                <p class="alert alert-warning" [hidden]="form.controls.email.valid || (form.controls.email.pristine && !submitted)">
+                                    Gyldig e-post er obligatorisk.
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- STEP FORM BUTTONS -->
+                    <div class="col-sm-12 step-form-buttons">
+                        <div class="form-group">
+                            <div class="center">
+                                <button (click)="loadStepForm1()" class="btn btn-custom2">Forrige</button>
+                                <button [disabled]="!form.controls.birthNo.valid || !form.controls.mobileNo.valid || !form.controls.email.valid" (click)="loadStepForm3()" class="btn btn-custom2">Neste</button>
+                            </div>
+                        </div>
+                    </div>
                 </div>
+
+                <!-- PERSONALIA END -->
+
+                <!-- BEKREFT OG SEND -->
+                <div *ngIf="stepForm3">
+                    <modal #customerExists>
+                        <modal-header>
+                            <h1>Søknad eksisterer fra før</h1>
+                        </modal-header>
+                        <modal-content>
+                            <div *ngIf="loadingInModal" class="center"><img class="loading" src="Images/spin.svg" /></div>
+                            Lånesøknad på dette fødselsnummeret eksisterer allerede. Ønsker du å endre den eksisterende søknaden med de nye verdiene?
+                        </modal-content>
+                        <modal-footer>
+                            <button class="btn btn-custom2" (click)="customerExists.close()">Tibake</button>
+                            <button [disabled]="!form.valid" class="btn btn-custom2" (click)="customerExists.close(); editCustomer();">Endre</button>
+                        </modal-footer>
+                    </modal>
+                    <div *ngIf="loading" class="center"><img class="loading" src="Images/spin.svg" /></div>
+                    <div class="col-sm-offset-1 col-sm-5">
+                        <div class="col-sm-12"><h3>Lånet</h3></div>
+                        <div class="col-sm-12">Lånebeløp: <div class="loanValues">{{valAmount}} kroner</div></div>
+                        <div class="col-sm-12">Nedbetalingstid: <div class="loanValues">{{valYears}} år</div></div>
+                        <div class="col-sm-12">Rente: <div class="interest">7%</div></div>
+                        <div class="col-sm-12">Månedlig kostnad: <div class="monthlyPayment">{{monthlyPayment}} kroner</div></div>
+                    </div>
+                    <div class="col-sm-6">
+                        <div class="col-sm-12"><h3>Personalia</h3></div>
+                        <div class="col-sm-12">Fødselsnummer: {{valBirthNo}}</div>
+                        <div class="col-sm-12">Mobil: {{valMobileNo}}</div>
+                        <div class="col-sm-12">E-post: {{valEmail}}</div>
+                    </div>
+                    <div class="col-sm-12">
+                        <div class="terms center">
+                            <modal #termsModal>
+                                <modal-header>
+                                    <h1>Vilkår og betingelser</h1>
+                                </modal-header>
+                                <modal-content>
+                                    <h3>Samtykke til kredittsjekk</h3>
+                                    <p>Jeg erkjenner at søknaden og kredittinformasjon kan sendes via Internett til oppgitte adressen.</p>
+                                    <p>Jeg forstår at kredittopplysninger samles inn av Hardbank og av våre samarbeidspartnere.</p>
+                                    <p>Jeg er også klar over at Hardbank ikke tar noen kredittbeslutninger, dette gjør våre samarbeidsbanker.</p>
+                                    <p>Jeg gir fullmakt til Hardbank til å samle inn kredittgodkjenning og ytterligere informasjon fra banker og långivere.</p>
+
+                                    <h3>Begrensning av Hardbanks ansvar</h3>
+                                    <p>Hardbank er ikke ansvarlig for skader som skyldes norsk eller utenlandsk lovgivning, norsk eller utenlandsk myndighet, krig, streik, blokader, boikott, lockout eller andre lignende omstendigheter. De forbehold med hensyn til streik, boikott og lockout gjelder også dersom Hardbank selv blir utsatt for lignende. Skader som oppstår i andre tilfeller skal ikke erstattes av Hardbank. Hardbank er ikke under noen omstendigheter ansvarlig for følgeskader.</p>
+                                    <p>Før du søker, er det viktig at du tenker gjennom dine inntekter og utgifter, slik at du kan se hva du har råd til. En enkel måte å gjøre dette på er å bruke forbrukerrådet sitt husstandsbudsjett og vår forbrukslånkalkulator. Du trenger ikke vise oss din beregning. Dette er din avgjørelse.</p>
+                                </modal-content>
+                                <modal-footer>
+                                    <button class="btn btn-custom2" (click)="termsModal.close()">Tibake</button>
+                                    <button class="btn btn-custom2" (click)="termsModal.close(); terms=true;">Godta</button>
+                                </modal-footer>
+                            </modal>
+                            <input type="checkbox" [(ngModel)]="terms" formControlName="terms"> <a (click)="termsModal.open()"><span>Jeg godkjenner vilkår og betingelser</span></a>
+                        </div>
+                    </div>
+                    <!-- STEP FORM BUTTONS -->
+                    <div class="col-sm-12 step-form-buttons2">
+                        <div class="form-group">
+                            <div class="center">
+                                <button (click)="loadStepForm2()" class="btn btn-custom2">Forrige</button>
+                                <button type="submit" [disabled]="!form.valid" class="btn btn-custom2">Send søknad</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div *ngIf="stepForm4">
+                    Din søknad er nå registrert! Du vil snart bli kontaktet av en av våre saksbehandlere.
+                    <!-- STEP FORM BUTTONS -->
+                    <div class="col-sm-12 step-form-buttons2">
+                        <div class="form-group">
+                            <div class="center">
+                                <button (click)="loadStepForm3()" class="btn btn-custom2">Forrige</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
             </form>
+            <!-- FORM END -->
         </div>
+    </div>
+    <div class="center">
+        <button class="btn btn-custom" (click)="backBtn()">Tilbake</button>
     </div>
 </div>
 
 
 <!-- Informasjon -->
-<div class="panel panel-default panel-transparent gandalf" *ngIf="showInfo">
-    <div class="panel-heading">
-        <h3>Informasjon</h3>
-    </div>
-
-    <div class="panel-body">
-        <div class="col-sm-10">
-            
+<div *ngIf="showInfo">
+    <div class="panel panel-default panel-transparent gandalf">
+        <div class="panel-heading">
+            <h2>Informasjon</h2>
         </div>
+
+        <div class="panel-body">
+            <div class="col-sm-12">
+                <h3>Hvem kan søke?</h3>
+                <ul>
+                    <li>Du må være minimum 20 år</li>
+                    <li>Du må ha fast inntekt</li>
+                    <li>Kun 7% rente!</li>
+                    <li>Du kan ikke ha aktive inkassosaker </li>
+                    <li>eller betalingsanmerkninger</li>
+                </ul>
+                <p>I tillegg til at du oppfyller disse kravene må vi utføre en kredittvurdering av deg før vi kan gi deg et lånetinbud.</p>
+
+                <h3>Hvordan ser søkeprosessen ut?</h3>
+                <ul>
+                    <li>Fyll ut og send inn søknaden</li>
+                    <li>Dersom du får innvilget lån vil du bli kontaktet av en saksbehandler samme dag som du sender inn lånesøknaden eller påfølgende virkedag.</li>
+                    <li>Etter at lånesøknaden er innvilget vil du få tilsendt lånedokumenter på e-post eller til din folkeregistrerte adresse.</li>
+                    <li>Når vi har mottatt dokumentasjon som nevnt i punkt 3 og undertegnede lånedokumenter, så vil en saksbehandler sjekke at opplysninger om arbeidsforhold, inntekt og gjeld som du oppgav i søknaden stemmer</li>
+                    <li>Etter at kredittvurderingsprosessen er gjennomført, må du legitimere deg</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <div class="center">
+        <button class="btn btn-custom" (click)="backBtn()">Tilbake</button>
+    </div>
+</div>
+
+<!-- Liste av søknader -->
+<div *ngIf="showAllLoanApplications">
+    <div class="panel panel-default panel-transparent gandalf">
+        <div class="panel-heading">
+            <h2>Ubehandlede søknader</h2>
+        </div>
+
+        <div class="panel-body">
+            <div class="col-sm-12">
+                <div *ngIf="loading" class="center"><img class="loading" src="Images/spin.svg" /></div>
+                <table class="table table-bordered table-condensed">
+                    <thead>
+                        <tr>
+                            <th>Fødselsnummer</th>
+                            <th>Mobil</th>
+                            <th>E-post</th>
+                            <th>Lånebeløp</th>
+                            <th>Nedbetalingstid</th>
+                        </tr>
+                    </thead>
+                    <tbody *ngFor="let a of allLoanApplications">
+                        <tr>
+                            <td>{{a.BirthNo}}</td>
+                            <td>{{a.MobileNo}}</td>
+                            <td>{{a.Email}}</td>
+                            <td>{{a.BorrowingLimit}} kr</td>
+                            <td>{{a.RepaymentPeriod}} år</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+    <div class="center">
+        <button class="btn btn-custom" (click)="backBtn()">Tilbake</button>
     </div>
 </div>

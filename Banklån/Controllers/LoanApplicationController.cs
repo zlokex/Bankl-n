@@ -7,6 +7,7 @@ using System.Net;
 using System.Net.Http;
 using System.Text;
 using System.Web.Http;
+using System.Web.Http.Description;
 using System.Web.Script.Serialization;
 
 namespace Banklån.Controllers
@@ -28,8 +29,10 @@ namespace Banklån.Controllers
             };
         }
 
+        
+
         // GET api/LoanApplication/S
-        public HttpResponseMessage Get(int id)
+        public HttpResponseMessage Get(string id)
         {
             var loanApplication = _repository.getLoanApplication(id);
             string JSonString = new JavaScriptSerializer().Serialize(loanApplication);
@@ -73,6 +76,28 @@ namespace Banklån.Controllers
                     Content = new StringContent("Kunne ikke legge til lånsøknaden")
                 };
             }
+        }
+
+        // PUT api/LoanApplication/5
+        [HttpPut]
+        public HttpResponseMessage Put(string id, [FromBody]LoanApplication loanApplication)
+        {
+            if (ModelState.IsValid)
+            {
+                bool success = _repository.editLoanApplication(id, loanApplication);
+                if (success)
+                {
+                    return new HttpResponseMessage()
+                    {
+                        StatusCode = HttpStatusCode.OK
+                    };
+                }
+            }
+            return new HttpResponseMessage()
+            {
+                StatusCode = HttpStatusCode.NotFound,
+                Content = new StringContent("Kunne ikke endre kunden i DB")
+            };
         }
     }
 }

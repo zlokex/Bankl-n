@@ -212,11 +212,9 @@ var SPA = (function () {
             return JsonData;
         }).subscribe(function (JsonData) {
             if (JsonData == null) {
-                _this.userExist = false;
                 _this.addLoanApplication();
             }
             else {
-                _this.userExist = true;
                 _this.customerExistsModal.open();
             }
         }, function (error) { return alert(error); }, function () { return console.error("ferdig get"); });
@@ -236,4 +234,4 @@ var SPA = (function () {
     return SPA;
 }());
 exports.SPA = SPA;
-//# sourceMappingURL=spa.js.map
+//# sourceMappingURL=app.component.spa.js.map
